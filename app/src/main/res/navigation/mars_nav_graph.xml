@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mars_nav_graph.xml"
+    app:startDestination="@id/opportunityFragment">
+    <fragment
+        android:id="@+id/curiosityFragment"
+        android:name="com.example.picmars.ui.fragments.CuriosityFragment"
+        android:label="CuriosityFragment" />
+    <fragment
+        android:id="@+id/spiritFragment"
+        android:name="com.example.picmars.ui.fragments.SpiritFragment"
+        android:label="SpiritFragment" />
+    <fragment
+        android:id="@+id/opportunityFragment"
+        android:name="com.example.picmars.ui.fragments.OpportunityFragment"
+        android:label="OpportunityFragment" />
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.example.picmars.ui.fragments.ArticleFragment"
+        android:label="ArticleFragment" />
+</navigation>
