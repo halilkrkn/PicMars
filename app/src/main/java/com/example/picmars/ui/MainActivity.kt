@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // navigation components setup
         bottomNavigationView.setupWithNavController(marsNavHostFragment.findNavController())
 
     }
