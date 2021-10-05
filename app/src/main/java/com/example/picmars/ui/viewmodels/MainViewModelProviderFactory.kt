@@ -1,14 +1,15 @@
-package com.example.picmars.ui.viewmodels.spirit
+package com.example.picmars.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.picmars.repository.PicMarsRepository
 
-class SpiritViewModelProviderFactory(
+class MainViewModelProviderFactory(
     private val picMarsRepository: PicMarsRepository
-): ViewModelProvider.NewInstanceFactory() {
+): ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return SpiritViewModel(picMarsRepository) as T    }
+        return MainViewModel(picMarsRepository) as T    }
+
 }

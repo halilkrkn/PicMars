@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mars_nav_graph.xml"
-    app:startDestination="@id/opportunityFragment">
+    app:startDestination="@id/curiosityFragment">
     <fragment
         android:id="@+id/curiosityFragment"
         android:name="com.example.picmars.ui.fragments.CuriosityFragment"

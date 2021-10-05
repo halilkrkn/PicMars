@@ -27,7 +27,7 @@ abstract class PicMarsPhotoDb: RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 PicMarsPhotoDb::class.java,
-                "article_db.db"
+                "picMarsPhotoDb.db"
             ).build()
     }
 

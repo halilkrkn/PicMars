@@ -18,10 +18,11 @@ interface PicMarsApiService {
         sol: Int = 1000,
         @Query("camera")
         camera: String,
-//        @Query("page") page: Int,
+        @Query("page")
+        page: Int = 1,
         @Query("apiKey")
         apiKey: String = API_KEY
-    )
+    ): Response<PicMarsResponse>
 
     @GET("v1/rovers/opportunity/photos")
     suspend fun getOpportunity(
@@ -29,10 +30,11 @@ interface PicMarsApiService {
         sol: Int = 1000,
         @Query("camera")
         camera: String,
-//        @Query("page") page: Int,
+        @Query("page")
+        page: Int = 1,
         @Query("apiKey")
         apiKey: String = API_KEY
-    )
+    ): Response<PicMarsResponse>
 
     @GET("v1/rovers/spirit/photos")
     suspend fun getSpirit(
@@ -40,7 +42,8 @@ interface PicMarsApiService {
         sol: Int = 1000,
         @Query("camera")
         camera: String,
-//        @Query("page") page: Int,
+        @Query("page")
+        page: Int = 1,
         @Query("apiKey")
         apiKey: String = API_KEY
     ): Response<PicMarsResponse>
