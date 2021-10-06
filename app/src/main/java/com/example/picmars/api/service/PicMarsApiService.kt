@@ -16,36 +16,36 @@ interface PicMarsApiService {
     suspend fun getCuriosity(
         @Query("sol")
         sol: Int = 1000,
-        @Query("camera")
-        camera: String,
+//        @Query("camera")
+//        camera: String,
 //        @Query("page")
 //        page: Int = 1,
         @Query("api_key")
         apiKey: String = API_KEY
     ): Response<PicMarsResponse>
 
-//    @GET("v1/rovers/opportunity/photos")
-//    suspend fun getOpportunity(
-//        @Query("sol")
-//        sol: Int = 1000,
-////        @Query("camera")
-////        camera: String,
-////        @Query("page")
-////        page: Int = 1,
-//        @Query("apiKey")
-//        apiKey: String = API_KEY
-//    ): Response<PicMarsResponse>
-//
-//    @GET("v1/rovers/spirit/photos")
-//    suspend fun getSpirit(
-//        @Query("sol")
-//        sol: Int = 1000,
-////        @Query("camera")
-////        camera: String,
-////        @Query("page")
-////        page: Int = 1,
-//        @Query("apiKey")
-//        apiKey: String = API_KEY
-//    ): Response<PicMarsResponse>
+    @GET("rovers/opportunity/photos")
+    suspend fun getOpportunity(
+        @Query("sol")
+        sol: Int = 1000,
+//        @Query("camera")
+//        camera: String,
+//        @Query("page")
+//        page: Int = 1,
+        @Query("api_key")
+        apiKey: String = API_KEY
+    ): Response<PicMarsResponse>
+
+    @GET("rovers/spirit/photos")
+    suspend fun getSpirit(
+        @Query("sol")
+        sol: Int = 1000,
+//        @Query("camera")
+//        camera: String,
+//        @Query("page")
+//        page: Int = 1,
+        @Query("api_key")
+        apiKey: String = API_KEY
+    ): Response<PicMarsResponse>
 
 }

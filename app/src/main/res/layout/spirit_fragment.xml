@@ -5,26 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/etSearch"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSpirit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SPIRIT"
-        android:textAlignment="center"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSpirit"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingBottom="50dp"
-        android:clipToPadding="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSearch"
-        tools:layout_editor_absoluteX="0dp" />
 
     <ProgressBar
         android:id="@+id/paginationProgressBarSpirit"
@@ -37,5 +28,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

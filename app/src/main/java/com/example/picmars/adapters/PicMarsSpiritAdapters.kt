@@ -51,7 +51,7 @@ class PicMarsSpiritAdapters: RecyclerView.Adapter<PicMarsSpiritAdapters.PicMarsV
 
         val spiritPhoto = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(spiritPhoto.imgSrc).into(ivSpiritImage)
+            Glide.with(this).load("https://mars.nasa.gov/mer/gallery/all/2/p/1000/2P215138639ESFAS00P2600R8M1-BR.JPG").into(ivSpiritImage)
             tvSpiritCamera.text = spiritPhoto.camera.name
             tvSpiritRoverName.text = spiritPhoto.rover.name
             tvSpiritEarthDate.text = spiritPhoto.earthDate

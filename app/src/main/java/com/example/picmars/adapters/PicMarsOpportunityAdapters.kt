@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.picmars.R
 import com.example.picmars.models.Photo
-import kotlinx.android.synthetic.main.item_article_preview_curiosity.view.*
 import kotlinx.android.synthetic.main.item_article_preview_opportunity.view.*
 
 class PicMarsOpportunityAdapters: RecyclerView.Adapter<PicMarsOpportunityAdapters.PicMarsViewHolder>() {
@@ -51,7 +50,7 @@ class PicMarsOpportunityAdapters: RecyclerView.Adapter<PicMarsOpportunityAdapter
 
         val  opportunityPhoto = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(opportunityPhoto.imgSrc).into(ivOpportunityImage)
+            Glide.with(this).load("https://mars.nasa.gov/mer/gallery/all/1/n/1000/1N216958451EFF76ZFP1950R0M1-BR.JPG").into(ivOpportunityImage)
             tvOpportunityCamera.text = opportunityPhoto.camera.name
             tvOpportunityRoverName.text = opportunityPhoto.rover.name
             tvOpportunityEarthDate.text = opportunityPhoto.earthDate

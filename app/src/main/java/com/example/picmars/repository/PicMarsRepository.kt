@@ -7,6 +7,12 @@ class PicMarsRepository(
    private val db: PicMarsPhotoDb
 ){
 
-    suspend fun getCuriosityRepo(sol: Int, camera: String) =
-        RetrofitInstance.api.getCuriosity(sol,camera)
+    suspend fun getCuriosityRepo(sol: Int) =
+        RetrofitInstance.api.getCuriosity(sol)
+
+    suspend fun getOpportunityRepo(sol: Int) =
+        RetrofitInstance.api.getOpportunity(sol)
+
+    suspend fun getSpiritRepo(sol: Int) =
+        RetrofitInstance.api.getSpirit(sol)
 }

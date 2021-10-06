@@ -14,18 +14,37 @@ class MainViewModel(
 ): ViewModel() {
 
     val curiosityPic: MutableLiveData<Resource<PicMarsResponse>> = MutableLiveData()
-    var curiosityPage = 1
-    val sol = 1000
-    val camera: String = "navcam"
+    val opportunityPic: MutableLiveData<Resource<PicMarsResponse>> = MutableLiveData()
+    val spiritPic: MutableLiveData<Resource<PicMarsResponse>> = MutableLiveData()
 
-    init {
-        getCuriosityRepo(sol, camera)
+
+//    var curiosityPage = 1
+    val sol = 1000
+//    val camera: String = "fhaz"
+
+init {
+    getOpportunity()
+    getCuriosity()
+
+    getSpirit()
+}
+
+    private fun getCuriosity() = viewModelScope.launch {
+        curiosityPic.postValue(Resource.Loading())
+        val response = picMarsRepository.getCuriosityRepo(sol)
+        curiosityPic.postValue(handleCuriosityResponse(response))
     }
 
-    fun getCuriosityRepo(sol: Int,camera: String) = viewModelScope.launch {
-        curiosityPic.postValue(Resource.Loading())
-        val response = picMarsRepository.getCuriosityRepo(sol,camera)
-        curiosityPic.postValue(handleCuriosityResponse(response))
+    private fun getOpportunity() = viewModelScope.launch {
+        opportunityPic.postValue(Resource.Loading())
+        val response = picMarsRepository.getOpportunityRepo(sol)
+        opportunityPic.postValue(handleCuriosityResponse(response))
+
+    }
+    private fun getSpirit() = viewModelScope.launch {
+        spiritPic.postValue(Resource.Loading())
+        val response = picMarsRepository.getSpiritRepo(sol)
+        spiritPic.postValue(handleCuriosityResponse(response))
     }
 
     private fun handleCuriosityResponse(response: Response<PicMarsResponse>) : Resource<PicMarsResponse> {
