@@ -12,40 +12,40 @@ import retrofit2.http.Query
 
 interface PicMarsApiService {
 
-    @GET("v1/rovers/curiosity/photos")
+    @GET("rovers/curiosity/photos")
     suspend fun getCuriosity(
         @Query("sol")
         sol: Int = 1000,
         @Query("camera")
         camera: String,
-        @Query("page")
-        page: Int = 1,
-        @Query("apiKey")
+//        @Query("page")
+//        page: Int = 1,
+        @Query("api_key")
         apiKey: String = API_KEY
     ): Response<PicMarsResponse>
 
-    @GET("v1/rovers/opportunity/photos")
-    suspend fun getOpportunity(
-        @Query("sol")
-        sol: Int = 1000,
-        @Query("camera")
-        camera: String,
-        @Query("page")
-        page: Int = 1,
-        @Query("apiKey")
-        apiKey: String = API_KEY
-    ): Response<PicMarsResponse>
-
-    @GET("v1/rovers/spirit/photos")
-    suspend fun getSpirit(
-        @Query("sol")
-        sol: Int = 1000,
-        @Query("camera")
-        camera: String,
-        @Query("page")
-        page: Int = 1,
-        @Query("apiKey")
-        apiKey: String = API_KEY
-    ): Response<PicMarsResponse>
+//    @GET("v1/rovers/opportunity/photos")
+//    suspend fun getOpportunity(
+//        @Query("sol")
+//        sol: Int = 1000,
+////        @Query("camera")
+////        camera: String,
+////        @Query("page")
+////        page: Int = 1,
+//        @Query("apiKey")
+//        apiKey: String = API_KEY
+//    ): Response<PicMarsResponse>
+//
+//    @GET("v1/rovers/spirit/photos")
+//    suspend fun getSpirit(
+//        @Query("sol")
+//        sol: Int = 1000,
+////        @Query("camera")
+////        camera: String,
+////        @Query("page")
+////        page: Int = 1,
+//        @Query("apiKey")
+//        apiKey: String = API_KEY
+//    ): Response<PicMarsResponse>
 
 }

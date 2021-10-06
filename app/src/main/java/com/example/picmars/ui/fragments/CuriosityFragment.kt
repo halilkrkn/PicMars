@@ -35,7 +35,7 @@ class CuriosityFragment: Fragment(R.layout.curiosity_fragment) {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Log.e(TAG,"An Error Occured: $message")
+                        Log.e(TAG,"An Error Occured(BİR HATA OLUŞTU): $message")
 
                     }
                 }

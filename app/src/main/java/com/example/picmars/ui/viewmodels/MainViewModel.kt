@@ -16,10 +16,15 @@ class MainViewModel(
     val curiosityPic: MutableLiveData<Resource<PicMarsResponse>> = MutableLiveData()
     var curiosityPage = 1
     val sol = 1000
+    val camera: String = "navcam"
 
-    fun getCuriosityRepo(camera: String) = viewModelScope.launch {
+    init {
+        getCuriosityRepo(sol, camera)
+    }
+
+    fun getCuriosityRepo(sol: Int,camera: String) = viewModelScope.launch {
         curiosityPic.postValue(Resource.Loading())
-        val response = picMarsRepository.getCuriosityRepo(sol,camera,curiosityPage)
+        val response = picMarsRepository.getCuriosityRepo(sol,camera)
         curiosityPic.postValue(handleCuriosityResponse(response))
     }
 

@@ -26,7 +26,7 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
         }
 
         override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean {
-            return  oldItem == newItem
+            return  oldItem.hashCode() == newItem.hashCode()
         }
 
     }
