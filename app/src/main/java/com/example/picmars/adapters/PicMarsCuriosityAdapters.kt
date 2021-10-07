@@ -27,7 +27,7 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
         }
 
         override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean {
-            return  oldItem == newItem
+            return  oldItem.hashCode() == newItem.hashCode()
         }
 
     }
@@ -48,13 +48,19 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
-
+//
     override fun onBindViewHolder(holder: PicMarsViewHolder, position: Int) {
 
         val curiosityPhoto = differ.currentList[position]
         holder.itemView.apply {
 //            Picasso.get().load(curiosityPhoto.imgSrc).into(ivCuriosityImage);
-            Glide.with(this).load("https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FRB_486265257EDR_F0481570FHAZ00323M_.JPG").into(ivCuriosityImage)
+//            val url = curiosityPhoto.imgSrc
+            Glide.with(this)
+                .load("https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486265257EDR_F0481570FHAZ00323M_.JPG")
+                .override(200, 200)
+                .into(ivCuriosityImage)
+
+
             tvCuriosityCamera.text = curiosityPhoto.camera.name
             tvCuriosityRoverName.text = curiosityPhoto.rover.name
             tvCuriosityEarthDate.text = curiosityPhoto.earthDate

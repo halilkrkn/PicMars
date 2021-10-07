@@ -29,7 +29,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toRightOf="@+id/ivArticleImage"
+        app:layout_constraintLeft_toRightOf="@+id/ivCuriosityImage"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,7 +46,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toRightOf="@+id/ivArticleImage"
+        app:layout_constraintLeft_toRightOf="@+id/ivCuriosityImage"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,7 +63,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toRightOf="@+id/ivArticleImage"
+        app:layout_constraintLeft_toRightOf="@+id/ivCuriosityImage"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

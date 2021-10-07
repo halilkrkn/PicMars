@@ -11,6 +11,8 @@
         android:layout_width="242dp"
         android:layout_height="135dp"
         android:scaleType="centerCrop"
+        android:background="@drawable/ic_baseline_filter_2_24"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +29,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toRightOf="@+id/ivArticleImage"
+        app:layout_constraintLeft_toRightOf="@+id/ivOpportunityImage"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +46,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toRightOf="@+id/ivArticleImage"
+        app:layout_constraintLeft_toRightOf="@+id/ivOpportunityImage"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +63,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toRightOf="@+id/ivArticleImage"
+        app:layout_constraintLeft_toRightOf="@+id/ivOpportunityImage"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

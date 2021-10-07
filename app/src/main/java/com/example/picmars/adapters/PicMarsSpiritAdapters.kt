@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.picmars.R
 import com.example.picmars.models.Photo
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_article_preview_curiosity.view.*
 import kotlinx.android.synthetic.main.item_article_preview_spirit.view.*
 
@@ -51,7 +52,8 @@ class PicMarsSpiritAdapters: RecyclerView.Adapter<PicMarsSpiritAdapters.PicMarsV
 
         val spiritPhoto = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load("https://mars.nasa.gov/mer/gallery/all/2/p/1000/2P215138639ESFAS00P2600R8M1-BR.JPG").into(ivSpiritImage)
+//                        Picasso.get().load(spiritPhoto.imgSrc).into(ivSpiritImage);
+            Glide.with(this).load("https://mars.nasa.gov/mer/gallery/all/2/r/001/2R126468012EDN0000P1002L0M1-BR.JPG").into(ivSpiritImage)
             tvSpiritCamera.text = spiritPhoto.camera.name
             tvSpiritRoverName.text = spiritPhoto.rover.name
             tvSpiritEarthDate.text = spiritPhoto.earthDate
