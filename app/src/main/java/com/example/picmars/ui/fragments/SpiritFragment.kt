@@ -73,44 +73,57 @@ class SpiritFragment: Fragment(R.layout.spirit_fragment) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.cameraFhaz -> {
-                // navigate to settings screen
-                true
-            }
-            R.id.cameraRhaz -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraMast -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraChemcam -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraMahli -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraMardi -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraNavcam -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraPancam -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraMinites -> {
-                // save profile changes
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+        return super.onOptionsItemSelected(item)
+
     }
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setHasOptionsMenu(true)
+//    }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.filter_mars_pic_menu, menu)
+//    }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when (item.itemId) {
+//            R.id.cameraFhaz -> {
+//                // navigate to settings screen
+//                true
+//            }
+//            R.id.cameraRhaz -> {
+//                // save profile changes
+//                true
+//            }
+//            R.id.cameraMast -> {
+//                // save profile changes
+//                true
+//            }
+//            R.id.cameraChemcam -> {
+//                // save profile changes
+//                true
+//            }
+//            R.id.cameraMahli -> {
+//                // save profile changes
+//                true
+//            }
+//            R.id.cameraMardi -> {
+//                // save profile changes
+//                true
+//            }
+//            R.id.cameraNavcam -> {
+//                // save profile changes
+//                true
+//            }
+//            R.id.cameraPancam -> {
+//                // save profile changes
+//                true
+//            }
+//            R.id.cameraMinites -> {
+//                // save profile changes
+//                true
+//            }
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//    }
 }

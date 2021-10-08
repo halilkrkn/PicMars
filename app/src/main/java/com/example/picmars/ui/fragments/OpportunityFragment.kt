@@ -74,45 +74,8 @@ class OpportunityFragment: Fragment(R.layout.opportunity_fragment) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.cameraFhaz -> {
-                // navigate to settings screen
-                true
-            }
-            R.id.cameraRhaz -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraMast -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraChemcam -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraMahli -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraMardi -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraNavcam -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraPancam -> {
-                // save profile changes
-                true
-            }
-            R.id.cameraMinites -> {
-                // save profile changes
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+        return super.onOptionsItemSelected(item)
+
     }
 
 }

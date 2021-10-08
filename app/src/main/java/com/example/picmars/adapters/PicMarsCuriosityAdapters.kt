@@ -1,22 +1,31 @@
 package com.example.picmars.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
+import android.widget.PopupWindow
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.picmars.R
+import com.example.picmars.models.Camera
 import com.example.picmars.models.Photo
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.android.synthetic.main.item_article_preview_curiosity.view.*
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.coroutines.coroutineContext
 
 
-class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.PicMarsViewHolder>() {
+class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.PicMarsViewHolder>(){
+
 
     inner class PicMarsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
-
 
     //DiffUtil, RecyclerView adapterındaki verilerin daha verimli bir şekilde güncellenmesi için kullanılır.
     private val differCallback = object: DiffUtil.ItemCallback<Photo>(){
@@ -44,7 +53,6 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
         )
     }
 
-
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
@@ -56,7 +64,7 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
 //            Picasso.get().load(curiosityPhoto.imgSrc).into(ivCuriosityImage);
 //            val url = curiosityPhoto.imgSrc
             Glide.with(this)
-                .load("https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486265257EDR_F0481570FHAZ00323M_.JPG")
+                .load(curiosityPhoto.imgSrc)
                 .override(200, 200)
                 .into(ivCuriosityImage)
 
@@ -65,17 +73,9 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
             tvCuriosityRoverName.text = curiosityPhoto.rover.name
             tvCuriosityEarthDate.text = curiosityPhoto.earthDate
             setOnClickListener {
-                onItemClickListener?.let {
-                    it(curiosityPhoto)
-                }
+
             }
         }
-    }
-
-    private var onItemClickListener: ((Photo) -> Unit)? = null
-
-    fun setOnItemClickListener(listener:(Photo) -> Unit){
-        onItemClickListener = listener
     }
 
 }

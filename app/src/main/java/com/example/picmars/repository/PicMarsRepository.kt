@@ -2,6 +2,7 @@ package com.example.picmars.repository
 
 import com.example.picmars.api.service.RetrofitInstance
 import com.example.picmars.db.PicMarsPhotoDb
+import com.example.picmars.models.Photo
 
 class PicMarsRepository(
    private val db: PicMarsPhotoDb
@@ -15,4 +16,7 @@ class PicMarsRepository(
 
     suspend fun getSpiritRepo(sol: Int) =
         RetrofitInstance.api.getSpirit(sol)
+
+    suspend fun upsert(photos: Photo) = db.getPicMarsPhotoDao().upsert(photos)
+
 }
