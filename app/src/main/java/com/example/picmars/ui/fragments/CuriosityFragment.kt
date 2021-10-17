@@ -54,7 +54,7 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
                 }
             }
         })
-        
+
     }
 
     private fun hideProgressBar() {
@@ -88,6 +88,8 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
        }
 
     }
+
+
 
 
 }

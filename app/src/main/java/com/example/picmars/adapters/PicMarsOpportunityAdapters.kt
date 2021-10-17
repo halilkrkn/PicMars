@@ -3,13 +3,16 @@ package com.example.picmars.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.picmars.R
 import com.example.picmars.models.Photo
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.item_article_preview_opportunity.view.*
+import kotlinx.android.synthetic.main.popup.view.*
 
 class PicMarsOpportunityAdapters: RecyclerView.Adapter<PicMarsOpportunityAdapters.PicMarsViewHolder>() {
 
@@ -55,17 +58,34 @@ class PicMarsOpportunityAdapters: RecyclerView.Adapter<PicMarsOpportunityAdapter
             tvOpportunityRoverName.text = opportunityPhoto.rover.name
             tvOpportunityEarthDate.text = opportunityPhoto.earthDate
             setOnClickListener {
-                onItemClickListener?.let {
-                    it(opportunityPhoto)
+
+
+//               Snackbar.make(it,"Giriş Yapıldı: ${curiosityPhoto.camera.fullName}",Snackbar.LENGTH_LONG).show()
+//                Toast.makeText(it.getContext(), "Görüntüler Yükleniyor", Toast.LENGTH_SHORT).show();
+                val bottomSheetDialog = BottomSheetDialog(
+                    it.context,R.style.Theme_MaterialComponents_Light_BottomSheetDialog
+                )
+                val bottomSheetView = LayoutInflater.from(it.context).inflate(R.layout.popup,
+                    findViewById<LinearLayout>(R.id.bottomSheet)
+                )
+
+                bottomSheetView.apply {
+                    txTakesDate.text = "Çekilen Tarih: ${opportunityPhoto.earthDate}"
+                    txRoverName.text = "Araç Adı: ${opportunityPhoto.rover.name}"
+                    txCameraName.text = "Kamera Adı: ${opportunityPhoto.camera.name}"
+                    txRoverState.text = "Görev Durumu: ${opportunityPhoto.rover.status}"
+                    txRoverLaunchDate.text = "Fırlatma Tarihi: ${opportunityPhoto.rover.launchDate}"
+                    txRoverLandingDate.text = "İniş Tarihi: ${opportunityPhoto.rover.landingDate}"
+                    Glide.with(this)
+                        .load("https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01004/opgs/edr/fcam/FLB_486615455EDR_F0481570FHAZ00323M_.JPG")
+                        .override(375, 175)
+                        .into(imagePopup)
+
+                }
+                bottomSheetDialog.setContentView(bottomSheetView)
+                bottomSheetDialog.show()
+
                 }
             }
         }
     }
-
-    private var onItemClickListener: ((Photo) -> Unit)? = null
-
-    fun setOnItemClickListener(listener:(Photo) -> Unit){
-        onItemClickListener = listener
-    }
-
-}
