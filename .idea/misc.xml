@@ -19,10 +19,12 @@
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.34375" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/menu/filter_mars_pic_menu.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/menu/menu.xml" value="0.25" />
+        <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/menu/searchable.xml" value="0.3692708333333333" />
+        <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/xml/searchable.xml" value="0.2504528985507246" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

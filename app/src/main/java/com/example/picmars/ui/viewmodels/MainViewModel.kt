@@ -13,7 +13,6 @@ class MainViewModel(
     val picMarsRepository: PicMarsRepository,
 ): ViewModel() {
 
-//    val searchViewResponse: MutableLiveData<Camera> = MutableLiveData()
     val curiosityPic: MutableLiveData<Resource<PicMarsResponse>> = MutableLiveData()
     val opportunityPic: MutableLiveData<Resource<PicMarsResponse>> = MutableLiveData()
     val spiritPic: MutableLiveData<Resource<PicMarsResponse>> = MutableLiveData()
@@ -23,6 +22,8 @@ class MainViewModel(
     val solCuriosity = 1000
     val solOpportunity = 10
     val solSpirit = 1
+
+
 //    val camera: String = "fhaz"
 
 init {
@@ -59,8 +60,8 @@ init {
         return Resource.Error(response.message())
     }
 
-    fun upsert(photo: Photo) = viewModelScope.launch {
-        picMarsRepository.upsert(photo)
+    fun saveArticle(photos: List<Photo>) = viewModelScope.launch {
+        picMarsRepository.upssert(photos)
     }
 
 }

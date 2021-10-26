@@ -8,11 +8,9 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.picmars.R
 import com.example.picmars.adapters.PicMarsCuriosityAdapters
-import com.example.picmars.models.Photo
 import com.example.picmars.ui.MainActivity
 import com.example.picmars.ui.viewmodels.MainViewModel
 import com.example.picmars.util.Resource
@@ -40,6 +38,7 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
                     hideProgressBar()
                     response.data?.let { curiosityResponse ->
                         curiosityAdapters.differ.submitList(curiosityResponse.photos)
+                        viewModel.saveArticle(curiosityResponse.photos)
 
                     }
                 }
@@ -56,6 +55,8 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
         })
 
     }
+
+
 
     private fun hideProgressBar() {
         paginationProgressBarCuriosity.visibility = View.INVISIBLE
@@ -77,19 +78,16 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.filter_mars_pic_menu, menu)
 
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
-       searchView.onQueryTextChanged {
-
-       }
+        searchView.onQueryTextChanged {
+        }
 
     }
-
-
-
-
 }
+

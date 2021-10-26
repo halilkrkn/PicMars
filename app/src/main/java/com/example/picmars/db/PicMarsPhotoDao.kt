@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 interface PicMarsPhotoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert(photos: Photo) : Long
+    suspend fun upsert(photos: kotlin.collections.List<com.example.picmars.models.Photo>)
 
     @Query("SELECT * FROM photos")
     fun getAllPhotos(): LiveData<List<Photo>>

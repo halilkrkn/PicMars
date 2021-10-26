@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         val picMarsRepository = PicMarsRepository(PicMarsPhotoDb(this))
 
+
         //Curiosity
         val mainViewModelProviderFactory = MainViewModelProviderFactory(picMarsRepository)
 

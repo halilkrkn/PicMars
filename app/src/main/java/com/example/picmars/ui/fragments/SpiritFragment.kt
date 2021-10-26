@@ -32,6 +32,8 @@ class SpiritFragment: Fragment(R.layout.spirit_fragment) {
                     hideProgressBar()
                     response.data?.let { spiritResponse ->
                         spiritAdapters.differ.submitList(spiritResponse.photos)
+                        viewModel.saveArticle(spiritResponse.photos)
+
                     }
                 }
                 is Resource.Error -> {

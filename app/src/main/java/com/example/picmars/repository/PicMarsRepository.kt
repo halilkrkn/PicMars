@@ -17,6 +17,9 @@ class PicMarsRepository(
     suspend fun getSpiritRepo(sol: Int) =
         RetrofitInstance.api.getSpirit(sol)
 
-    suspend fun upsert(photos: Photo) = db.getPicMarsPhotoDao().upsert(photos)
+    suspend fun upssert(photos: List<Photo>) = db.getPicMarsPhotoDao().upsert(photos)
+
+
+
 
 }
