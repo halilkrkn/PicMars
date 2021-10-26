@@ -33,6 +33,8 @@ class OpportunityFragment: Fragment(R.layout.opportunity_fragment) {
                     hideProgressBar()
                     response.data?.let { opportunityResponse ->
                         opportunityAdapters.differ.submitList(opportunityResponse.photos)
+                        viewModel.savePhoto(opportunityResponse.photos)
+
                     }
                 }
                 is Resource.Error -> {

@@ -36,6 +36,7 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
                     hideProgressBar()
                     response.data?.let { curiosityResponse ->
                         curiosityAdapters.differ.submitList(curiosityResponse.photos)
+                        viewModel.savePhoto(curiosityResponse.photos)
 
                     }
                 }

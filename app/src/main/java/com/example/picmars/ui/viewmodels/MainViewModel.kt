@@ -60,7 +60,7 @@ init {
         return Resource.Error(response.message())
     }
 
-    fun saveArticle(photos: List<Photo>) = viewModelScope.launch {
+    fun savePhoto(photos: List<Photo>) = viewModelScope.launch {
         picMarsRepository.upsert(photos)
     }
 
