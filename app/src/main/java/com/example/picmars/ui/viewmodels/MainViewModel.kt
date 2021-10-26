@@ -59,8 +59,13 @@ init {
         return Resource.Error(response.message())
     }
 
+<<<<<<< Updated upstream
     fun upsert(photo: Photo) = viewModelScope.launch {
         picMarsRepository.upsert(photo)
+=======
+    fun saveArticle(photos: List<Photo>) = viewModelScope.launch {
+        picMarsRepository.upsert(photos)
+>>>>>>> Stashed changes
     }
 
 }

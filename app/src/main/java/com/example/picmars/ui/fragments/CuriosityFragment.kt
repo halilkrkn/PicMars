@@ -23,10 +23,6 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
 
     lateinit var  viewModel: MainViewModel
     lateinit var  curiosityAdapters: PicMarsCuriosityAdapters
-//    lateinit var photo: Photo
-
-
-
     val TAG = "CuriosityFragment"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

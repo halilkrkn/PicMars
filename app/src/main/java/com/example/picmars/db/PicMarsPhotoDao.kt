@@ -5,7 +5,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.picmars.models.Camera
 import com.example.picmars.models.Photo
 import kotlinx.coroutines.flow.Flow
 
@@ -13,7 +12,11 @@ import kotlinx.coroutines.flow.Flow
 interface PicMarsPhotoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+<<<<<<< Updated upstream
     suspend fun upsert(photos: Photo) : Long
+=======
+    suspend fun upsert(photos: List<Photo>)
+>>>>>>> Stashed changes
 
     @Query("SELECT * FROM photos")
     fun getAllPhotos(): LiveData<List<Photo>>
