@@ -18,6 +18,8 @@ import com.example.picmars.ui.viewmodels.MainViewModel
 import com.example.picmars.util.Resource
 import com.example.picmars.util.onQueryTextChanged
 import kotlinx.android.synthetic.main.curiosity_fragment.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 
 class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
 
@@ -37,7 +39,6 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
                     response.data?.let { curiosityResponse ->
                         curiosityAdapters.differ.submitList(curiosityResponse.photos)
                         viewModel.savePhoto(curiosityResponse.photos)
-
                     }
                 }
                 is Resource.Error -> {
@@ -68,6 +69,11 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
             adapter = curiosityAdapters
             layoutManager = LinearLayoutManager(activity)
         }
+
+        viewModel.tasks.observe(viewLifecycleOwner){
+            curiosityAdapters.differ.submitList(it)
+        }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,6 +87,7 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
         val searchView = searchItem.actionView as SearchView
 
        searchView.onQueryTextChanged {
+           viewModel.searchQuery.value = it
 
        }
 

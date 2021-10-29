@@ -1,11 +1,15 @@
 package com.example.picmars.ui.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.picmars.db.PicMarsPhotoDao
 import com.example.picmars.models.Photo
 import com.example.picmars.models.PicMarsResponse
 import com.example.picmars.repository.PicMarsRepository
 import com.example.picmars.util.Resource
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -64,5 +68,21 @@ init {
         picMarsRepository.upsert(photos)
     }
 
+//    fun searchPhoto(searchPhoto: Photo) = viewModelScope.launch {
+//        picMarsRepository.search(searchPhoto)
+//    }
+
+    val searchQuery = MutableStateFlow("")
+
+    private val tasksFlow = searchQuery.flatMapLatest {
+       picMarsRepository.search(it)
+    }
+
+    val tasks = tasksFlow.asLiveData()
 }
+
+
+
+
+
 
