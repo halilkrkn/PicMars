@@ -69,7 +69,7 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
         val curiosityPhoto = differ.currentList[position]
         holder.itemView.apply {
 //            Picasso.get().load(curiosityPhoto.imgSrc).into(ivCuriosityImage);
-//            val url = curiosityPhoto.imgSrc
+
             Glide.with(this)
                 .load("https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01004/opgs/edr/fcam/FLB_486615455EDR_F0481570FHAZ00323M_.JPG")
                 .override(200, 200)
@@ -79,10 +79,6 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
             tvCuriosityCamera.text = curiosityPhoto.camera.name
             tvCuriosityRoverName.text = curiosityPhoto.rover.name
             tvCuriosityEarthDate.text = curiosityPhoto.earthDate
-
-//                txCameraPopup.text = curiosityPhoto.camera.name
-//                txCameraPopup1.text = curiosityPhoto.rover.name
-//                txCameraPopup2.text = curiosityPhoto.earthDate
 
             setOnClickListener {
 

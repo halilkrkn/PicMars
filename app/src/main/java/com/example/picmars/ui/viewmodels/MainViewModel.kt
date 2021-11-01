@@ -64,21 +64,19 @@ init {
         return Resource.Error(response.message())
     }
 
+    // Database apideki veriler ekleniyor.
     fun savePhoto(photos: List<Photo>) = viewModelScope.launch {
         picMarsRepository.upsert(photos)
     }
 
-//    fun searchPhoto(searchPhoto: Photo) = viewModelScope.launch {
-//        picMarsRepository.search(searchPhoto)
-//    }
-
+    // Filtreleme İşlemleri için Repositoryden oluşturudpumuz search fonk getiriyoruz.
     val searchQuery = MutableStateFlow("")
 
-    private val tasksFlow = searchQuery.flatMapLatest {
+    private val searchFlow = searchQuery.flatMapLatest {
        picMarsRepository.search(it)
     }
 
-    val tasks = tasksFlow.asLiveData()
+    val searchPhoto = searchFlow.asLiveData()
 }
 
 

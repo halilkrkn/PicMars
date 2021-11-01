@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import com.example.picmars.adapters.PicMarsOpportunityAdapters
 import com.example.picmars.ui.MainActivity
 import com.example.picmars.ui.viewmodels.MainViewModel
 import com.example.picmars.util.Resource
+import com.example.picmars.util.onQueryTextChanged
 import kotlinx.android.synthetic.main.opportunity_fragment.*
 
 class OpportunityFragment: Fragment(R.layout.opportunity_fragment) {
@@ -34,6 +36,9 @@ class OpportunityFragment: Fragment(R.layout.opportunity_fragment) {
                     response.data?.let { opportunityResponse ->
                         opportunityAdapters.differ.submitList(opportunityResponse.photos)
                         viewModel.savePhoto(opportunityResponse.photos)
+                        viewModel.searchPhoto.observe(viewLifecycleOwner){
+                            opportunityAdapters.differ.submitList(it)
+                        }
 
                     }
                 }
@@ -66,18 +71,20 @@ class OpportunityFragment: Fragment(R.layout.opportunity_fragment) {
             layoutManager = LinearLayoutManager(activity)
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.filter_mars_pic_menu, menu)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
 
+        // Filrelemedeki anahtar kelimeyi yazıp değişikliği harekete geçiren yapı.
+        searchView.onQueryTextChanged {
+            viewModel.searchQuery.value = it
+        }
     }
 
 }

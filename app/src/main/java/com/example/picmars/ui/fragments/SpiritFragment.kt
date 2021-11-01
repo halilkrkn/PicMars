@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import com.example.picmars.adapters.PicMarsSpiritAdapters
 import com.example.picmars.ui.MainActivity
 import com.example.picmars.ui.viewmodels.MainViewModel
 import com.example.picmars.util.Resource
+import com.example.picmars.util.onQueryTextChanged
 import kotlinx.android.synthetic.main.spirit_fragment.*
 
 class SpiritFragment: Fragment(R.layout.spirit_fragment) {
@@ -33,6 +35,9 @@ class SpiritFragment: Fragment(R.layout.spirit_fragment) {
                     response.data?.let { spiritResponse ->
                         spiritAdapters.differ.submitList(spiritResponse.photos)
                         viewModel.savePhoto(spiritResponse.photos)
+                        viewModel.searchPhoto.observe(viewLifecycleOwner){
+                            spiritAdapters.differ.submitList(it)
+                        }
                     }
                 }
                 is Resource.Error -> {
@@ -71,60 +76,13 @@ class SpiritFragment: Fragment(R.layout.spirit_fragment) {
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.filter_mars_pic_menu, menu)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+
+        // Filrelemedeki anahtar kelimeyi yazıp değişikliği harekete geçiren yapı.
+        searchView.onQueryTextChanged {
+            viewModel.searchQuery.value = it
+        }
     }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
-
-    }
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setHasOptionsMenu(true)
-//    }
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.filter_mars_pic_menu, menu)
-//    }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.cameraFhaz -> {
-//                // navigate to settings screen
-//                true
-//            }
-//            R.id.cameraRhaz -> {
-//                // save profile changes
-//                true
-//            }
-//            R.id.cameraMast -> {
-//                // save profile changes
-//                true
-//            }
-//            R.id.cameraChemcam -> {
-//                // save profile changes
-//                true
-//            }
-//            R.id.cameraMahli -> {
-//                // save profile changes
-//                true
-//            }
-//            R.id.cameraMardi -> {
-//                // save profile changes
-//                true
-//            }
-//            R.id.cameraNavcam -> {
-//                // save profile changes
-//                true
-//            }
-//            R.id.cameraPancam -> {
-//                // save profile changes
-//                true
-//            }
-//            R.id.cameraMinites -> {
-//                // save profile changes
-//                true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
 }
