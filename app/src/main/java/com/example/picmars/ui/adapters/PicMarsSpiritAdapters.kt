@@ -1,4 +1,4 @@
-package com.example.picmars.adapters
+package com.example.picmars.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.picmars.R
-import com.example.picmars.models.Photo
+import com.example.picmars.data.models.Photo
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_article_preview_curiosity.view.*
-import kotlinx.android.synthetic.main.item_article_preview_spirit.view.*
+import kotlinx.android.synthetic.main.item_photo_picmars.view.*
 import kotlinx.android.synthetic.main.popup.view.*
 
 class PicMarsSpiritAdapters: RecyclerView.Adapter<PicMarsSpiritAdapters.PicMarsViewHolder>() {
@@ -38,7 +36,7 @@ class PicMarsSpiritAdapters: RecyclerView.Adapter<PicMarsSpiritAdapters.PicMarsV
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PicMarsViewHolder {
         return PicMarsViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_article_preview_spirit,
+                R.layout.spirit_fragment,
                 parent,
                 false
 
@@ -56,10 +54,10 @@ class PicMarsSpiritAdapters: RecyclerView.Adapter<PicMarsSpiritAdapters.PicMarsV
         val spiritPhoto = differ.currentList[position]
         holder.itemView.apply {
 //                        Picasso.get().load(spiritPhoto.imgSrc).into(ivSpiritImage);
-            Glide.with(this).load("https://mars.nasa.gov/mer/gallery/all/2/r/001/2R126468012EDN0000P1002L0M1-BR.JPG").into(ivSpiritImage)
-            tvSpiritCamera.text = spiritPhoto.camera.name
-            tvSpiritRoverName.text = spiritPhoto.rover.name
-            tvSpiritEarthDate.text = spiritPhoto.earthDate
+            Glide.with(this).load("https://mars.nasa.gov/mer/gallery/all/2/r/001/2R126468012EDN0000P1002L0M1-BR.JPG").into(image_view_picmars)
+            text_view_camera_name.text = spiritPhoto.camera.name
+            text_view_launch_date.text = spiritPhoto.rover.launchDate
+
             setOnClickListener {
 
 //               Snackbar.make(it,"Giriş Yapıldı: ${curiosityPhoto.camera.fullName}",Snackbar.LENGTH_LONG).show()
@@ -81,7 +79,7 @@ class PicMarsSpiritAdapters: RecyclerView.Adapter<PicMarsSpiritAdapters.PicMarsV
                     Glide.with(this)
                         .load("https://mars.nasa.gov/mer/gallery/all/2/r/001/2R126468012EDN0000P1002L0M1-BR.JPG")
                         .override(375, 175)
-                        .into(imagePopup)
+                        .into(image_view_popup)
 
                 }
                 bottomSheetDialog.setContentView(bottomSheetView)

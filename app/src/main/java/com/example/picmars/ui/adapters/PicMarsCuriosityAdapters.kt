@@ -1,4 +1,4 @@
-package com.example.picmars.adapters
+package com.example.picmars.ui.adapters
 
 import android.content.Context
 import android.util.DisplayMetrics
@@ -15,18 +15,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.picmars.R
-import com.example.picmars.models.Camera
-import com.example.picmars.models.Photo
+import com.example.picmars.data.models.Photo
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.snackbar.Snackbar
-import com.squareup.picasso.Picasso
-import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.android.synthetic.main.item_article_preview_curiosity.view.*
+import kotlinx.android.synthetic.main.item_photo_picmars.view.*
 import kotlinx.android.synthetic.main.popup.*
 import kotlinx.android.synthetic.main.popup.view.*
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.coroutines.coroutineContext
+
 
 
 class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.PicMarsViewHolder>(){
@@ -52,7 +47,7 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PicMarsViewHolder {
         return PicMarsViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_article_preview_curiosity,
+                R.layout.item_photo_picmars,
                 parent,
                 false
 
@@ -73,12 +68,12 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
             Glide.with(this)
                 .load("https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01004/opgs/edr/fcam/FLB_486615455EDR_F0481570FHAZ00323M_.JPG")
                 .override(200, 200)
-                .into(ivCuriosityImage)
+                .into(image_view_picmars)
 
 
-            tvCuriosityCamera.text = curiosityPhoto.camera.name
-            tvCuriosityRoverName.text = curiosityPhoto.rover.name
-            tvCuriosityEarthDate.text = curiosityPhoto.earthDate
+            text_view_camera_name.text = curiosityPhoto.camera.name
+            text_view_launch_date.text = curiosityPhoto.rover.launchDate
+
 
             setOnClickListener {
 
@@ -101,7 +96,7 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
                     Glide.with(this)
                         .load("https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01004/opgs/edr/fcam/FLB_486615455EDR_F0481570FHAZ00323M_.JPG")
                         .override(375, 175)
-                        .into(imagePopup)
+                        .into(image_view_popup)
 
                 }
                 bottomSheetDialog.setContentView(bottomSheetView)

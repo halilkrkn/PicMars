@@ -1,72 +1,39 @@
 package com.example.picmars.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.picmars.R
-import com.example.picmars.adapters.PicMarsOpportunityAdapters
-import com.example.picmars.ui.MainActivity
-import com.example.picmars.ui.viewmodels.MainViewModel
-import com.example.picmars.util.Resource
-import com.example.picmars.util.onQueryTextChanged
+import com.example.picmars.databinding.OpportunityFragmentBinding
+import com.example.picmars.ui.adapters.PicMarsOpportunityAdapters
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.opportunity_fragment.*
 
+@AndroidEntryPoint
 class OpportunityFragment: Fragment(R.layout.opportunity_fragment) {
 
-    lateinit var  viewModel: MainViewModel
     lateinit var  opportunityAdapters: PicMarsOpportunityAdapters
+    var _binding: OpportunityFragmentBinding ?= null
+    private val binding get() = _binding!!
+
     val TAG = "OpportunityFragment"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as MainActivity).viewModel
+
+        _binding = OpportunityFragmentBinding.bind(view)
+
+
         setupRecyclerView()
-
-        viewModel.opportunityPic.observe(viewLifecycleOwner, Observer { response ->
-            when(response){
-                is Resource.Success -> {
-                    hideProgressBar()
-                    response.data?.let { opportunityResponse ->
-                        opportunityAdapters.differ.submitList(opportunityResponse.photos)
-                        viewModel.savePhoto(opportunityResponse.photos)
-                        viewModel.searchPhoto.observe(viewLifecycleOwner){
-                            opportunityAdapters.differ.submitList(it)
-                        }
-
-                    }
-                }
-                is Resource.Error -> {
-                    hideProgressBar()
-                    response.message?.let { message ->
-                        Log.e(TAG,"An Error Occured(BİR HATA OLUŞTU): $message")
-
-                    }
-                }
-                is Resource.Loading -> {
-                    showProgressBar()
-                }
-            }
-
-        })
-    }
-
-    private fun hideProgressBar() {
-        paginationProgressBarOpportunity.visibility = View.INVISIBLE
-    }
-    private fun showProgressBar() {
-        paginationProgressBarOpportunity.visibility = View.VISIBLE
     }
 
     private fun setupRecyclerView(){
         opportunityAdapters = PicMarsOpportunityAdapters()
-        rvOpportunity.apply {
+            binding.recyclerViewOpportunity.apply {
             adapter = opportunityAdapters
             layoutManager = LinearLayoutManager(activity)
         }
@@ -81,10 +48,12 @@ class OpportunityFragment: Fragment(R.layout.opportunity_fragment) {
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
-        // Filrelemedeki anahtar kelimeyi yazıp değişikliği harekete geçiren yapı.
-        searchView.onQueryTextChanged {
-            viewModel.searchQuery.value = it
-        }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
 
 }
