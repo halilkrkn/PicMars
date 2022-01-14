@@ -1,4 +1,4 @@
-package com.example.picmars.util
+package com.example.picmars.utils
 
 ///Başarılı ve hata yanıtlarını almak için
 // Sealed Class, Nesneye dayalı programlama yaklaşımında kalıtım (inheritence) özelliği sayesinde bir sınıftan başka sınıflar türetilebilir ve bu sınıflara yeni özellikler eklenerek daha zengin ve kullanışlı sınıflar yaratılabilir.

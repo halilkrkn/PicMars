@@ -1,17 +1,17 @@
-package com.example.picmars.models
+package com.example.picmars.data.models
 
 
+import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-const val PICMARS_ID = 0
-@Entity(
-    tableName = "photos"
-)
+@Parcelize
+@Entity(tableName = "picMarsPhoto")
 data class Photo(
-//    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
     @Embedded(prefix = "camera_")
     val camera: Camera,
@@ -22,7 +22,4 @@ data class Photo(
     @Embedded(prefix = "rover_")
     val rover: Rover,
     val sol: Int
-){
-    @PrimaryKey(autoGenerate = true)
-    var dbId: Int = PICMARS_ID
-}
+): Parcelable

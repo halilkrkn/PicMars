@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/drawable/ic_baseline_fullscreen_exit_24.xml" value="0.3553846153846154" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/activity_picmars.xml" value="0.2694746376811594" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/article_fragment.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/blank_fragment.xml" value="0.23324275362318841" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/curiosity_fragment.xml" value="0.25" />
@@ -12,8 +13,10 @@
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/item_article_preview_curiosity.xml" value="0.5" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/item_article_preview_opportunity.xml" value="0.23550724637681159" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/item_article_preview_spirit.xml" value="0.23550724637681159" />
+        <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/item_photo_picmars.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/opportunity_fragment.xml" value="0.16717325227963525" />
-        <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/popup.xml" value="0.1" />
+        <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/picmars_load_state_footer_and_header.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/popup.xml" value="0.25" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/popup_window.xml" value="0.1" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/spirit_fragment.xml" value="0.25" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.34375" />
@@ -22,7 +25,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

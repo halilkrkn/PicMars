@@ -1,4 +1,4 @@
-package com.example.picmars.util
+package com.example.picmars.utils
 
 import androidx.appcompat.widget.SearchView
 

@@ -1,4 +1,4 @@
-package com.example.picmars.adapters
+package com.example.picmars.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.picmars.R
-import com.example.picmars.models.Photo
+import com.example.picmars.data.models.Photo
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.item_article_preview_opportunity.view.*
+import kotlinx.android.synthetic.main.item_photo_picmars.view.*
 import kotlinx.android.synthetic.main.popup.view.*
 
 class PicMarsOpportunityAdapters: RecyclerView.Adapter<PicMarsOpportunityAdapters.PicMarsViewHolder>() {
@@ -36,7 +36,7 @@ class PicMarsOpportunityAdapters: RecyclerView.Adapter<PicMarsOpportunityAdapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PicMarsViewHolder {
         return PicMarsViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_article_preview_opportunity,
+                R.layout.item_photo_picmars,
                 parent,
                 false
 
@@ -53,10 +53,9 @@ class PicMarsOpportunityAdapters: RecyclerView.Adapter<PicMarsOpportunityAdapter
 
         val  opportunityPhoto = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load("https://mars.nasa.gov/mer/gallery/all/1/n/001/1N128285132EDN0000P1500R0M1-BR.JPG").into(ivOpportunityImage)
-            tvOpportunityCamera.text = opportunityPhoto.camera.name
-            tvOpportunityRoverName.text = opportunityPhoto.rover.name
-            tvOpportunityEarthDate.text = opportunityPhoto.earthDate
+            Glide.with(this).load("https://mars.nasa.gov/mer/gallery/all/1/n/001/1N128285132EDN0000P1500R0M1-BR.JPG").into(image_view_picmars)
+            text_view_camera_name.text = opportunityPhoto.camera.name
+            text_view_launch_date.text = opportunityPhoto.rover.launchDate
             setOnClickListener {
 
 
@@ -79,7 +78,7 @@ class PicMarsOpportunityAdapters: RecyclerView.Adapter<PicMarsOpportunityAdapter
                     Glide.with(this)
                         .load("https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01004/opgs/edr/fcam/FLB_486615455EDR_F0481570FHAZ00323M_.JPG")
                         .override(375, 175)
-                        .into(imagePopup)
+                        .into(image_view_popup)
 
                 }
                 bottomSheetDialog.setContentView(bottomSheetView)
