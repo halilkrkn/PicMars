@@ -1,4 +1,4 @@
-package com.example.picmars.ui.adapters.curiosity
+package com.example.picmars.ui.adapters.oppurtunity
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,8 +8,8 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.picmars.databinding.PicmarsLoadStateFooterAndHeaderBinding
 
-class CuriosityLoadStateAdapter(private val retry: () -> Unit) :
-    LoadStateAdapter<CuriosityLoadStateAdapter.LoadStateViewHolder>() {
+class OpportunityLoadStateAdapter(private val retry: () -> Unit) :
+    LoadStateAdapter<OpportunityLoadStateAdapter.LoadStateViewHolder>() {
 
     inner class LoadStateViewHolder(private val binding: PicmarsLoadStateFooterAndHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {

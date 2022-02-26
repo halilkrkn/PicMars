@@ -64,13 +64,10 @@ class CuriosityAdapter : PagingDataAdapter<Photo, CuriosityAdapter.PicMarsCurios
                         }
                         bottomSheetDialog.setContentView(bottomSheetView)
                         bottomSheetDialog.show()
-
                     }
                 }
-
             }
         }
-
     }
 
     override fun onBindViewHolder(holder: PicMarsCuriosityViewHolder, position: Int) {

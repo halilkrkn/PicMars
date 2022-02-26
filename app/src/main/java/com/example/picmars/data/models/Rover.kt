@@ -14,4 +14,4 @@ data class Rover(
     val launchDate: String,
     val name: String,
     val status: String
-): Parcelable
+) : Parcelable

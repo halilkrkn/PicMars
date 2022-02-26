@@ -22,4 +22,4 @@ data class Photo(
     @Embedded(prefix = "rover_")
     val rover: Rover,
     val sol: Int
-): Parcelable
+) : Parcelable

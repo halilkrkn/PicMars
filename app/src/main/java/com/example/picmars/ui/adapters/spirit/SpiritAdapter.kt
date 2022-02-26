@@ -4,86 +4,95 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.picmars.R
 import com.example.picmars.data.models.Photo
+import com.example.picmars.databinding.ItemPhotoPicmarsBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.item_photo_picmars.view.*
 import kotlinx.android.synthetic.main.popup.view.*
 
-class SpiritAdapter: RecyclerView.Adapter<SpiritAdapter.PicMarsViewHolder>() {
+class SpiritAdapter : PagingDataAdapter<Photo, SpiritAdapter.PicMarsCuriosityViewHolder>(
+    PICMARS_COMPORATOR
+) {
 
-    inner class PicMarsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    inner class PicMarsCuriosityViewHolder(private val binding: ItemPhotoPicmarsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-    //DiffUtil, RecyclerView adapterındaki verilerin daha verimli bir şekilde güncellenmesi için kullanılır.
-    private val differCallback = object: DiffUtil.ItemCallback<Photo>(){
+        fun bind(picMars: Photo) {
+            binding.apply {
+                Glide.with(itemView)
+                    .load(picMars.imgSrc)
+                    .centerCrop()
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .error(R.drawable.ic_baseline_image_not_supported_24)
+                    .into(imageViewPicmars)
 
-        override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean {
-            return oldItem.id == newItem.id
+                textViewCameraName.text = picMars.camera.fullName
+                textViewLaunchDate.text = "Launch Date: ${picMars.rover.launchDate}"
 
-        }
+                itemView.apply {
+                    cardView.setOnClickListener {
 
-        override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean {
-            return  oldItem == newItem
-        }
+                        val bottomSheetDialog = BottomSheetDialog(
+                            it.context, R.style.Theme_MaterialComponents_Light_BottomSheetDialog
+                        )
+                        val bottomSheetView = LayoutInflater.from(it.context).inflate(
+                            R.layout.popup,
+                            findViewById<LinearLayout>(R.id.bottomSheet)
+                        )
 
-    }
+                        bottomSheetView.apply {
+                            txTakesDate.text = "Çekilen Tarih: ${picMars.earthDate}"
+                            txRoverName.text = "Araç Adı: ${picMars.rover.name}"
+                            txCameraName.text = "Kamera Adı: ${picMars.camera.name}"
+                            txRoverState.text = "Görev Durumu: ${picMars.rover.status}"
+                            txRoverLaunchDate.text =
+                                "Fırlatma Tarihi: ${picMars.rover.launchDate}"
+                            txRoverLandingDate.text =
+                                "İniş Tarihi: ${picMars.rover.landingDate}"
+                            Glide.with(this)
+                                .load(picMars.imgSrc)
+                                .centerCrop()
+                                .transition(DrawableTransitionOptions.withCrossFade())
+                                .error(R.drawable.ic_baseline_image_not_supported_24)
+                                .into(image_view_popup)
 
-    val differ = AsyncListDiffer(this,differCallback)
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PicMarsViewHolder {
-        return PicMarsViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.spirit_fragment,
-                parent,
-                false
-
-            )
-        )
-    }
-
-
-    override fun getItemCount(): Int {
-        return differ.currentList.size
-    }
-
-    override fun onBindViewHolder(holder: PicMarsViewHolder, position: Int) {
-
-        val spiritPhoto = differ.currentList[position]
-        holder.itemView.apply {
-//                        Picasso.get().load(spiritPhoto.imgSrc).into(ivSpiritImage);
-            Glide.with(this).load("https://mars.nasa.gov/mer/gallery/all/2/r/001/2R126468012EDN0000P1002L0M1-BR.JPG").into(image_view_picmars)
-            text_view_camera_name.text = spiritPhoto.camera.name
-            text_view_launch_date.text = spiritPhoto.rover.launchDate
-
-            setOnClickListener {
-
-//               Snackbar.make(it,"Giriş Yapıldı: ${curiosityPhoto.camera.fullName}",Snackbar.LENGTH_LONG).show()
-//                Toast.makeText(it.getContext(), "Görüntüler Yükleniyor", Toast.LENGTH_SHORT).show();
-                val bottomSheetDialog = BottomSheetDialog(
-                    it.context,R.style.Theme_MaterialComponents_Light_BottomSheetDialog
-                )
-                val bottomSheetView = LayoutInflater.from(it.context).inflate(R.layout.popup,
-                    findViewById<LinearLayout>(R.id.bottomSheet)
-                )
-
-                bottomSheetView.apply {
-                    txTakesDate.text = "Çekilen Tarih: ${spiritPhoto.earthDate}"
-                    txRoverName.text = "Araç Adı: ${spiritPhoto.rover.name}"
-                    txCameraName.text = "Kamera Adı: ${spiritPhoto.camera.name}"
-                    txRoverState.text = "Görev Durumu: ${spiritPhoto.rover.status}"
-                    txRoverLaunchDate.text = "Fırlatma Tarihi: ${spiritPhoto.rover.launchDate}"
-                    txRoverLandingDate.text = "İniş Tarihi: ${spiritPhoto.rover.landingDate}"
-                    Glide.with(this)
-                        .load("https://mars.nasa.gov/mer/gallery/all/2/r/001/2R126468012EDN0000P1002L0M1-BR.JPG")
-                        .override(375, 175)
-                        .into(image_view_popup)
-
+                        }
+                        bottomSheetDialog.setContentView(bottomSheetView)
+                        bottomSheetDialog.show()
+                    }
                 }
-                bottomSheetDialog.setContentView(bottomSheetView)
-                bottomSheetDialog.show()
+            }
+        }
+    }
+
+    override fun onBindViewHolder(holder: PicMarsCuriosityViewHolder, position: Int) {
+        val currentPosition = getItem(position)
+        if (currentPosition != null) {
+            holder.bind(currentPosition)
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PicMarsCuriosityViewHolder {
+        val binding =
+            ItemPhotoPicmarsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return PicMarsCuriosityViewHolder(binding)
+    }
+
+    companion object {
+        private val PICMARS_COMPORATOR = object : DiffUtil.ItemCallback<Photo>() {
+            override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean {
+                return oldItem == newItem
             }
         }
     }

@@ -39,11 +39,11 @@ class CuriosityFragment() : Fragment(R.layout.curiosity_fragment) {
             curiosityAdapter.retry()
         }
 
-        viewModel.getAllCuriosityPicMars.observe(viewLifecycleOwner){
+        viewModel.getCuriosityPicMars.observe(viewLifecycleOwner) {
             curiosityAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
 
-        viewModel.allCuriosityPicMars().observe(viewLifecycleOwner){
+        viewModel.allCuriosityPicMars().observe(viewLifecycleOwner) {
             curiosityAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
 
@@ -80,7 +80,7 @@ class CuriosityFragment() : Fragment(R.layout.curiosity_fragment) {
         val searchView = searchItem.actionView as SearchView
 
         searchView.queryHint = "Please Write The Camera Name"
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }
@@ -101,7 +101,7 @@ class CuriosityFragment() : Fragment(R.layout.curiosity_fragment) {
 
     override fun onResume() {
         super.onResume()
-        viewModel.allCuriosityPicMars().observe(viewLifecycleOwner){
+        viewModel.allCuriosityPicMars().observe(viewLifecycleOwner) {
             curiosityAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
     }
