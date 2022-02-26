@@ -9,14 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.picmars.R
 import com.example.picmars.databinding.SpiritFragmentBinding
-import com.example.picmars.ui.adapters.PicMarsSpiritAdapters
+import com.example.picmars.ui.adapters.spirit.SpiritAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.spirit_fragment.*
 
 @AndroidEntryPoint
 class SpiritFragment: Fragment(R.layout.spirit_fragment) {
 
-    lateinit var  spiritAdapters: PicMarsSpiritAdapters
+    lateinit var  spiritAdapters: SpiritAdapter
     private var _binding: SpiritFragmentBinding ?= null
     private val binding get() = _binding!!
 
@@ -30,7 +29,7 @@ class SpiritFragment: Fragment(R.layout.spirit_fragment) {
     }
 
     private fun setupRecyclerView(){
-        spiritAdapters =  PicMarsSpiritAdapters()
+        spiritAdapters =  SpiritAdapter()
         binding.recyclerViewSpirit.apply {
             adapter = spiritAdapters
             layoutManager = LinearLayoutManager(activity)

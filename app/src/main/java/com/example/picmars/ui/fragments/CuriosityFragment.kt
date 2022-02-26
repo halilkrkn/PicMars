@@ -5,18 +5,23 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.picmars.R
 import com.example.picmars.databinding.CuriosityFragmentBinding
-import com.example.picmars.ui.adapters.PicMarsCuriosityAdapters
+import com.example.picmars.ui.adapters.curiosity.CuriosityAdapter
+import com.example.picmars.ui.adapters.curiosity.CuriosityLoadStateAdapter
+import com.example.picmars.ui.viewmodels.CuriosityViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.curiosity_fragment.*
 
 @AndroidEntryPoint
-class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
+class CuriosityFragment() : Fragment(R.layout.curiosity_fragment) {
 
-    lateinit var  curiosityAdapters: PicMarsCuriosityAdapters
+    private val viewModel by viewModels<CuriosityViewModel>()
+    lateinit var curiosityAdapter: CuriosityAdapter
     private var _binding: CuriosityFragmentBinding? = null
     private val binding get() = _binding!!
     val TAG = "CuriosityFragment"
@@ -29,16 +34,37 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
 
         setupRecyclerView()
 
+        // Burada ise CuriosityFragment içerisindeki hata mesajı içerisnde ki Retry BUtonuna tekrardan verileri çekmesi için butonu aktifleştirdik.
+        binding.buttonRetryCuriosity.setOnClickListener {
+            curiosityAdapter.retry()
+        }
+
+        viewModel.getAllCuriosityPicMars.observe(viewLifecycleOwner){
+            curiosityAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
+
+        viewModel.allCuriosityPicMars().observe(viewLifecycleOwner){
+            curiosityAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
 
 
-    }
+        curiosityAdapter.addLoadStateListener { loadState ->
+            binding.apply {
+                recyclerViewCuriosity.isVisible = loadState.source.refresh is LoadState.NotLoading
+                progressBarCuriosity.isVisible = loadState.source.refresh is LoadState.Loading
+                buttonRetryCuriosity.isVisible = loadState.source.refresh is LoadState.Error
+                textViewErrorCuriosity.isVisible = loadState.source.refresh is LoadState.Error
+                if (loadState.source.refresh is LoadState.NotLoading &&
+                    loadState.append.endOfPaginationReached &&
+                    curiosityAdapter.itemCount < 1
+                ) {
+                    recyclerViewCuriosity.isVisible = false
+                    textViewEmptyCuriosity.isVisible = true
+                } else {
 
-
-    private fun setupRecyclerView(){
-        curiosityAdapters =  PicMarsCuriosityAdapters()
-       binding.recyclerViewCuriosity.apply {
-            adapter = curiosityAdapters
-            layoutManager = LinearLayoutManager(activity)
+                    textViewEmptyCuriosity.isVisible = false
+                }
+            }
         }
     }
 
@@ -46,12 +72,26 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.filter_mars_pic_menu, menu)
 
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
+        searchView.queryHint = "Please Write The Camera Name"
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                binding.recyclerViewCuriosity.scrollToPosition(0)
+                viewModel.searchCamera(newText)
+                return true
+            }
+
+        })
     }
 
     override fun onDestroyView() {
@@ -59,5 +99,23 @@ class CuriosityFragment(): Fragment(R.layout.curiosity_fragment){
         _binding = null
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.allCuriosityPicMars().observe(viewLifecycleOwner){
+            curiosityAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
+    }
 
+
+    private fun setupRecyclerView() {
+        curiosityAdapter = CuriosityAdapter()
+        binding.recyclerViewCuriosity.apply {
+            setHasFixedSize(true)
+            adapter = curiosityAdapter.withLoadStateHeaderAndFooter(
+                header = CuriosityLoadStateAdapter { curiosityAdapter.retry() },
+                footer = CuriosityLoadStateAdapter { curiosityAdapter.retry() }
+            )
+            layoutManager = LinearLayoutManager(activity)
+        }
+    }
 }

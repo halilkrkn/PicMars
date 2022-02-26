@@ -1,4 +1,4 @@
-package com.example.picmars.ui.adapters
+package com.example.picmars.ui.adapters.oppurtunity
 
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.item_photo_picmars.view.*
 import kotlinx.android.synthetic.main.popup.view.*
 
-class PicMarsOpportunityAdapters: RecyclerView.Adapter<PicMarsOpportunityAdapters.PicMarsViewHolder>() {
+class OpportunityAdapter: RecyclerView.Adapter<OpportunityAdapter.PicMarsViewHolder>() {
 
     inner class PicMarsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 

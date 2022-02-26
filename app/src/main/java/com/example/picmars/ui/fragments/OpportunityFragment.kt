@@ -9,14 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.picmars.R
 import com.example.picmars.databinding.OpportunityFragmentBinding
-import com.example.picmars.ui.adapters.PicMarsOpportunityAdapters
+import com.example.picmars.ui.adapters.oppurtunity.OpportunityAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.opportunity_fragment.*
 
 @AndroidEntryPoint
 class OpportunityFragment: Fragment(R.layout.opportunity_fragment) {
 
-    lateinit var  opportunityAdapters: PicMarsOpportunityAdapters
+    lateinit var  opportunityAdapters: OpportunityAdapter
     var _binding: OpportunityFragmentBinding ?= null
     private val binding get() = _binding!!
 
@@ -32,7 +31,7 @@ class OpportunityFragment: Fragment(R.layout.opportunity_fragment) {
     }
 
     private fun setupRecyclerView(){
-        opportunityAdapters = PicMarsOpportunityAdapters()
+        opportunityAdapters = OpportunityAdapter()
             binding.recyclerViewOpportunity.apply {
             adapter = opportunityAdapters
             layoutManager = LinearLayoutManager(activity)
