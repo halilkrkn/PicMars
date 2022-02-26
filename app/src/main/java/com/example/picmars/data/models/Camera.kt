@@ -13,4 +13,4 @@ data class Camera(
     val id: Int,
     @SerializedName("rover_id")
     val roverId: Int
-): Parcelable
+) : Parcelable

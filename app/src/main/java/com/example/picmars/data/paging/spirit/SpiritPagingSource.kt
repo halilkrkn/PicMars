@@ -1,4 +1,4 @@
-package com.example.picmars.data.paging.curiosity
+package com.example.picmars.data.paging.spirit
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -11,26 +11,26 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class PicMarsGetAllCuriosityPagingSource @Inject constructor(
+class SpiritPagingSource @Inject constructor(
     private val picMarsApiService: PicMarsApiService,
+    private val queryCamera: String
 ) : PagingSource<Int, Photo>() {
 
 
-
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Photo> {
-       val position = params.key ?: PICMARS_STARTING_PAGE_INDEX
+        val position = params.key ?: PICMARS_STARTING_PAGE_INDEX
         return try {
-           val response = picMarsApiService.getAllCuriosity(1000,position)
-           val picMars = response.photos
+            val response = picMarsApiService.getSpirit(10, queryCamera, position)
+            val picMars = response.photos
 
-           LoadResult.Page(
-               data = picMars,
-               prevKey = if (position == PICMARS_STARTING_PAGE_INDEX) null else position-1,
-               nextKey = if (picMars.isEmpty()) null else position +1
-           )
-        }catch(e: IOException){
+            LoadResult.Page(
+                data = picMars,
+                prevKey = if (position == PICMARS_STARTING_PAGE_INDEX) null else position - 1,
+                nextKey = if (picMars.isEmpty()) null else position + 1
+            )
+        } catch (e: IOException) {
             LoadResult.Error(e)
-        }catch(e: HttpException){
+        } catch (e: HttpException) {
             LoadResult.Error(e)
         }
     }

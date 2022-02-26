@@ -1,12 +1,30 @@
 package com.example.picmars.ui.viewmodels
+
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.example.picmars.data.repository.PicMarsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+
 @HiltViewModel
 class OpportunityViewModel @Inject constructor(
     val picMarsRepository: PicMarsRepository,
-): ViewModel() {
+) : ViewModel() {
+
+    private val currentQueryCamera = MutableLiveData("")
+    val getOpportunityPicMars = currentQueryCamera.switchMap { queryCamera ->
+        picMarsRepository.getOpportunitySearchResult(queryCamera).cachedIn(viewModelScope)
+    }
+
+    fun allOpportunityPicMars() = picMarsRepository.allOpportunityPicMars().cachedIn(viewModelScope)
+
+
+    fun searchCamera(queryCamera: String) {
+        currentQueryCamera.value = queryCamera
+    }
 
 }
 

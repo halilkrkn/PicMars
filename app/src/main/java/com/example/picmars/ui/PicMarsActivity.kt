@@ -20,9 +20,10 @@ class PicMarsActivity : AppCompatActivity() {
 
         // Bottom Navigation Kodlaması
         // Oluşturmuş olduğumuz bottom_nav_graph özelliği oluşturmş olduğumuz fragmentlerle kullanabilmek için navHostFragment e aktarıyoruz.
-        val nav_hos_fragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val nav_hos_fragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         //        // activity_main içerisinde oluşturduğumuz bottom navigation view bileşeninin kurulumunu yaptık ve sayfalar arası geçişleri sağlaması içinde navControllerı veriyoruz.
-        NavigationUI.setupWithNavController(binding.bottomNav,nav_hos_fragment.navController)
+        NavigationUI.setupWithNavController(binding.bottomNav, nav_hos_fragment.navController)
     }
 
 }

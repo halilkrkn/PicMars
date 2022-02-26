@@ -16,7 +16,7 @@ interface PicMarsApiService {
     //    @Headers("Authorization:$API_KEY")
     @GET("rovers/curiosity/photos")
     suspend fun getCuriosity(
-        @Query("sol") sol: Int = 1000,
+        @Query("sol") sol: Int,
         @Query("camera") camera: String,
         @Query("page") page: Int,
         @Query("api_key") apiKey: String = API_KEY
@@ -24,7 +24,7 @@ interface PicMarsApiService {
 
     @GET("rovers/curiosity/photos")
     suspend fun getAllCuriosity(
-        @Query("sol") sol: Int = 1000,
+        @Query("sol") sol: Int,
         @Query("page") page: Int,
         @Query("api_key") apiKey: String = API_KEY
     ): PicMarsResponse
@@ -32,7 +32,7 @@ interface PicMarsApiService {
     //    @Headers("Authorization:$API_KEY")
     @GET("rovers/opportunity/photos")
     suspend fun getOpportunity(
-        @Query("sol") sol: Int = 1000,
+        @Query("sol") sol: Int,
         @Query("camera") camera: String,
         @Query("page") page: Int,
         @Query("api_key") apiKey: String = API_KEY
@@ -41,7 +41,7 @@ interface PicMarsApiService {
     //    @Headers("Authorization:$API_KEY")
     @GET("rovers/opportunity/photos")
     suspend fun getAllOpportunity(
-        @Query("sol") sol: Int = 1000,
+        @Query("sol") sol: Int,
         @Query("page") page: Int,
         @Query("api_key") apiKey: String = API_KEY
     ): PicMarsResponse
@@ -50,7 +50,7 @@ interface PicMarsApiService {
     //    @Headers("Authorization:$API_KEY")
     @GET("rovers/spirit/photos")
     suspend fun getSpirit(
-        @Query("sol") sol: Int = 1000,
+        @Query("sol") sol: Int,
         @Query("camera") camera: String,
         @Query("page") page: Int,
         @Query("api_key") apiKey: String = API_KEY
@@ -59,7 +59,7 @@ interface PicMarsApiService {
     //    @Headers("Authorization:$API_KEY")
     @GET("rovers/spirit/photos")
     suspend fun getAllSpirit(
-        @Query("sol") sol: Int = 1000,
+        @Query("sol") sol: Int,
         @Query("page") page: Int,
         @Query("api_key") apiKey: String = API_KEY
     ): PicMarsResponse
