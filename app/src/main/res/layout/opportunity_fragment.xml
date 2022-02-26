@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
+    android:orientation="horizontal"
     tools:context=".ui.fragments.OpportunityFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_opportunity"
         android:layout_width="match_parent"
-        android:layout_height="603dp"
+        android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_photo_picmars" />
 
     <ProgressBar
@@ -19,7 +26,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_marginEnd="19dp"
         android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_error_opportunity"
+        app:layout_constraintEnd_toEndOf="@+id/button_retry_opportunity"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view_opportunity"
         tools:visibility="visible" />
 
     <TextView
@@ -31,6 +42,10 @@
         android:text="Results could not be loaded"
         android:textColor="@color/black"
         android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/button_retry_opportunity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar_opportunity"
         tools:visibility="visible" />
 
     <Button
@@ -38,10 +53,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/black"
         android:text="Retry"
         android:textColor="#F05454"
         android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view_opportunity"
+        app:layout_constraintStart_toStartOf="@+id/text_view_empty_opportunity"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_error_opportunity"
         tools:visibility="visible" />
 
     <TextView
@@ -49,9 +69,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
         android:text="No results for this query"
         android:textColor="@color/black"
         android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/button_retry_opportunity"
+        app:layout_constraintStart_toStartOf="@+id/text_view_error_opportunity"
+        app:layout_constraintTop_toBottomOf="@+id/button_retry_opportunity"
+        app:layout_constraintVertical_bias="0.762"
         tools:visibility="visible" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

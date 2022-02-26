@@ -1,51 +1,69 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardCornerRadius="15dp">
 
-    <LinearLayout
-        android:layout_width="400dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="3dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
 
         <ImageView
             android:id="@+id/image_view_picmars"
-            android:layout_width="395dp"
-            android:layout_height="167dp"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/text_view_launch_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_camera_name" />
 
         <TextView
             android:id="@+id/text_view_camera_name"
-            android:layout_width="375dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="16dp"
             android:drawablePadding="5dp"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="3"
             android:textColor="@color/black"
             app:drawableStartCompat="@drawable/ic_baseline_linked_camera_24"
+            app:layout_constraintBottom_toTopOf="@+id/image_view_picmars"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Camera Name" />
-
 
         <TextView
             android:id="@+id/text_view_launch_date"
-            android:layout_width="375dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="7dp"
             android:drawablePadding="4dp"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:textColor="@color/black"
             app:drawableStartCompat="@drawable/ic_baseline_rocket_launch_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_picmars"
             tools:text="Launch Date" />
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

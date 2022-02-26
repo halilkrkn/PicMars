@@ -1,15 +1,9 @@
-package com.example.picmars.ui.adapters
+package com.example.picmars.ui.adapters.spirit
 
-import android.content.Context
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.*
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AlertDialogLayout
-import androidx.appcompat.widget.PopupMenu
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -18,14 +12,9 @@ import com.example.picmars.R
 import com.example.picmars.data.models.Photo
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.item_photo_picmars.view.*
-import kotlinx.android.synthetic.main.popup.*
 import kotlinx.android.synthetic.main.popup.view.*
-import java.util.*
 
-
-
-class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.PicMarsViewHolder>(){
-
+class SpiritAdapter: RecyclerView.Adapter<SpiritAdapter.PicMarsViewHolder>() {
 
     inner class PicMarsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
@@ -38,7 +27,7 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
         }
 
         override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean {
-            return  oldItem.hashCode() == newItem.hashCode()
+            return  oldItem == newItem
         }
 
     }
@@ -47,7 +36,7 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PicMarsViewHolder {
         return PicMarsViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_photo_picmars,
+                R.layout.spirit_fragment,
                 parent,
                 false
 
@@ -55,25 +44,19 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
         )
     }
 
+
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
-//
+
     override fun onBindViewHolder(holder: PicMarsViewHolder, position: Int) {
 
-        val curiosityPhoto = differ.currentList[position]
+        val spiritPhoto = differ.currentList[position]
         holder.itemView.apply {
-//            Picasso.get().load(curiosityPhoto.imgSrc).into(ivCuriosityImage);
-
-            Glide.with(this)
-                .load("https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01004/opgs/edr/fcam/FLB_486615455EDR_F0481570FHAZ00323M_.JPG")
-                .override(200, 200)
-                .into(image_view_picmars)
-
-
-            text_view_camera_name.text = curiosityPhoto.camera.name
-            text_view_launch_date.text = curiosityPhoto.rover.launchDate
-
+//                        Picasso.get().load(spiritPhoto.imgSrc).into(ivSpiritImage);
+            Glide.with(this).load("https://mars.nasa.gov/mer/gallery/all/2/r/001/2R126468012EDN0000P1002L0M1-BR.JPG").into(image_view_picmars)
+            text_view_camera_name.text = spiritPhoto.camera.name
+            text_view_launch_date.text = spiritPhoto.rover.launchDate
 
             setOnClickListener {
 
@@ -87,14 +70,14 @@ class PicMarsCuriosityAdapters: RecyclerView.Adapter<PicMarsCuriosityAdapters.Pi
                 )
 
                 bottomSheetView.apply {
-                    txTakesDate.text = "Çekilen Tarih: ${curiosityPhoto.earthDate}"
-                    txRoverName.text = "Araç Adı: ${curiosityPhoto.rover.name}"
-                    txCameraName.text = "Kamera Adı: ${curiosityPhoto.camera.name}"
-                    txRoverState.text = "Görev Durumu: ${curiosityPhoto.rover.status}"
-                    txRoverLaunchDate.text = "Fırlatma Tarihi: ${curiosityPhoto.rover.launchDate}"
-                    txRoverLandingDate.text = "İniş Tarihi: ${curiosityPhoto.rover.landingDate}"
+                    txTakesDate.text = "Çekilen Tarih: ${spiritPhoto.earthDate}"
+                    txRoverName.text = "Araç Adı: ${spiritPhoto.rover.name}"
+                    txCameraName.text = "Kamera Adı: ${spiritPhoto.camera.name}"
+                    txRoverState.text = "Görev Durumu: ${spiritPhoto.rover.status}"
+                    txRoverLaunchDate.text = "Fırlatma Tarihi: ${spiritPhoto.rover.launchDate}"
+                    txRoverLandingDate.text = "İniş Tarihi: ${spiritPhoto.rover.landingDate}"
                     Glide.with(this)
-                        .load("https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01004/opgs/edr/fcam/FLB_486615455EDR_F0481570FHAZ00323M_.JPG")
+                        .load("https://mars.nasa.gov/mer/gallery/all/2/r/001/2R126468012EDN0000P1002L0M1-BR.JPG")
                         .override(375, 175)
                         .into(image_view_popup)
 
