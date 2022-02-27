@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.picmars.R
 import com.example.picmars.databinding.ActivityPicmarsBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,6 +25,11 @@ class PicMarsActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         //        // activity_main içerisinde oluşturduğumuz bottom navigation view bileşeninin kurulumunu yaptık ve sayfalar arası geçişleri sağlaması içinde navControllerı veriyoruz.
         NavigationUI.setupWithNavController(binding.bottomNav, nav_hos_fragment.navController)
+
+        // NavigationBar'da kullanılan iconları orijinal renkleriyle gösteriyor.
+        val navView: BottomNavigationView = findViewById(R.id.bottomNav)
+        navView.itemIconTintList = null
+
     }
 
 }

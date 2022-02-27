@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3553846153846154" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/drawable/ic_baseline_fullscreen_exit_24.xml" value="0.3553846153846154" />
+        <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/drawable/tab_color.xml" value="0.3609375" />
+        <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout-v31/activity_picmars.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/activity_picmars.xml" value="0.33" />
         <entry key="..\:/Users/halil/GitHub/PicMars/app/src/main/res/layout/article_fragment.xml" value="0.34479166666666666" />
@@ -28,7 +30,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
