@@ -13,3 +13,6 @@
 - Glide, görüntü yollarını çekmek ve alma işlemleri
 - Fragments yapıları
 - Lifecycle Yapıları
+## [ScreenShots](https://github.com/halilkrkn/PicMars/tree/master/screenshots)
+
+![Alt Text](https://github.com/halilkrkn/PicMars/blob/master/screenshots/picmars.gif)
