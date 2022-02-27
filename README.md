@@ -22,4 +22,4 @@
 - okhttp3: Logging - Interceptor
 ## [ScreenShots](https://github.com/halilkrkn/PicMars/tree/master/screenshots)
 
-![Alt Text](https://github.com/halilkrkn/PicMars/blob/master/screenshots/picmars.gif)
+![Alt Text](https://github.com/halilkrkn/PicMars/blob/master/screenshots/picmars_screenshot.png)
